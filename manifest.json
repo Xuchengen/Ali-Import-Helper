@@ -1,0 +1,57 @@
+{
+  "manifest_version": 2,
+  "name": "Fast Import Helper",
+  "version": "0.0.1",
+  "description": "使用Ali Import Helper可以很轻松的将阿里巴巴、速卖通相关商品信息同步到您的网站。",
+  "author": "徐承恩",
+  "icons": {
+    "16": "resources/imgs/logo_16.png",
+    "48": "resources/imgs/logo_48.png",
+    "128": "resources/imgs/logo_128.png"
+  },
+  "browser_action": {
+    "default_icon": "resources/imgs/logo_48.png",
+    "default_title": "Ali Import Helper",
+    "default_popup": "popup/index.html"
+  },
+  "background": {
+    "scripts": [
+      "resources/libs/jquery-3.5.1.min.js",
+      "background/background.js"
+    ]
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://www.alibaba.com/product-detail/*"
+      ],
+      "run_at": "document_end",
+      "all_frames": true,
+      "js": [
+        "resources/libs/jquery-3.5.1.min.js",
+        "content/alibaba.js"
+      ]
+    },
+    {
+      "matches": [
+        "*://www.aliexpress.com/item/*"
+      ],
+      "run_at": "document_end",
+      "all_frames": true,
+      "js": [
+        "resources/libs/jquery-3.5.1.min.js",
+        "content/aliexpress.js"
+      ]
+    }
+  ],
+  "permissions": [
+    "tabs",
+    "storage",
+    "webNavigation",
+    "<all_urls>"
+  ],
+  "homepage_url": "https://www.xuchengen.cn",
+  "web_accessible_resources": [
+    "resources/*"
+  ]
+}
